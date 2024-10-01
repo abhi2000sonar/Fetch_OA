@@ -9,15 +9,18 @@ categoryCode is missing for 650 out of 1167 entries, and topBrand is missing for
 brandCode is missing for 234 entries. 
 How critical is this field, and should entries with missing brandCode be treated differently?
 Should category and categoryCode always be present together, or are there cases where one can be absent?
+
 Duplicates in Users Data:
 
 Users Data: I found 353 rows with duplicate id_oid entries, which is concerning as these might represent repeated users. 
 Can duplicates in the id_oid field be valid, or should each id_oid be unique? How should we handle these duplicate entries in production?
+
 Data Consistency:
 
 active Flag in Users: The active field only has True and False values, which is expected. However, how do we define when a user should be considered inactive? Should the data include additional information (like inactivity duration) to better reflect this?
 
 topBrand in Brands: The topBrand field has True, False, and many NaN values. Are these NaN values meaningful, or should they be interpreted as False? How does the business treat a brand when this field is missing?
+
 Inconsistent Records:
 
 Users Data: There are some missing values in signUpSource (48 missing) and state (56 missing). Should these missing values be filled, or are these fields not always necessary?
@@ -43,6 +46,7 @@ Missing Values:
 
 In the brands_df, the critical fields such as id_oid, barcode, and name have no missing values, which is good. However, as noted previously (from earlier exploration), fields like categoryCode, topBrand, and brandCode do contain missing values.
 In the users_df, the key fields like id_oid, active, and createdDate.$date also have no missing values, which suggests that the core structure of the data is complete.
+
 Outliers or Future Dates:
 
 When I checked for future dates in the createdDate.$date field of users_df, the result was an empty DataFrame, meaning there are no records with a future createdDate. 
@@ -100,10 +104,12 @@ To optimize the user data:
 Is there any business significance to users created before a certain date? Should we handle older users differently, for example, by focusing on more recent users (e.g., those created after 2020) for analysis or retention efforts?
 Should users created during certain periods (e.g., promotion events) be treated differently? Understanding any specific marketing or promotional periods could help categorize and analyze user behavior better.
 How should we handle the inactive users, if any, based on the createdDate and lastLogin fields? We could optimize user engagement strategies by segmenting users based on their sign-up and last activity dates.
+
 Business Rules for Key Fields:
 
 For categoryCode, is it acceptable for some brands to not have a category code, or should every product have one? This will help decide whether to treat the missing values as legitimate or as data quality issues.
 Similarly, should all users have a sign-up date within a certain range (e.g., within the last five years), or are much older users still relevant for analysis? This information would help us clean the user data accordingly.
+
 Consistency Across Tables:
 
 Is there a relationship between brands_df and other datasets (like receipts_df)? For example, is categoryCode in the brands_df linked to any other product metadata across datasets? Understanding these relationships would help ensure consistent categorization across different tables and improve data quality.
