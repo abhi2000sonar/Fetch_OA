@@ -87,6 +87,7 @@ Category Code Information:
 The categoryCode field in the brands_df has a range of different categories, such as 'BAKING', 'BEVERAGES', 'CANDY_AND_SWEETS', etc. However, there are also missing values (nan). To optimize the data, I need to know the following:
 How should we handle missing category codes? Should we try to infer them from other available data (such as the product name), or should they be left blank if they’re not available?
 Is there a specific hierarchical structure or mapping between category and categoryCode? If so, understanding this relationship will help us categorize products more accurately, especially if we need to fill in missing values or validate the data.
+
 User Sign-Up Patterns:
 
 The createdDate.$date field in the users_df shows that users were created over a broad range of time:
