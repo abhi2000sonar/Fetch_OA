@@ -125,19 +125,24 @@ To handle potential memory issues, I’ve started storing the data in Parquet fo
 Data Growth and Scaling:
 
 As the brands_df and users_df datasets grow, performance may degrade if the data is stored in non-optimized formats like CSV or JSON. In a production environment, the system could face challenges if thousands or millions of records are added.
+
 Plan:
 
 Using Parquet is an initial step toward optimizing storage and read/write performance. However, to scale further, I would recommend moving the datasets to a distributed environment such as AWS S3, where the data can be stored in an optimized format and processed using AWS Athena or Apache Spark for distributed query execution.
+
 Data Retrieval and Querying:
 
 With larger datasets, querying across multiple tables (such as joining brands_df and users_df) could become resource-intensive and slow down performance, especially if complex queries or aggregations are required.
+
 Plan:
 
 To optimize query performance, I would consider using indexes on key fields such as _id.$oid in both datasets. Additionally, in a production environment, using Amazon Redshift or Google BigQuery would allow for more efficient querying of large datasets.
 Partitioning the data based on commonly queried fields (e.g., categoryCode in brands_df or createdDate.$date in users_df) would further improve query performance by reducing the amount of data scanned for each query.
+
 Data Access and Processing Speed:
 
 If the data is used for real-time analytics or reporting, the current in-memory approach might not scale well as the datasets grow.
+
 Plan:
 
 For real-time or near-real-time analytics, streaming architectures using tools like AWS Kinesis or Kafka can be introduced to process incoming data in real-time and keep the datasets up to date without requiring batch processing.
@@ -145,6 +150,7 @@ For real-time or near-real-time analytics, streaming architectures using tools l
 Handling Frequent Updates:
 
 If new brands and users are being added frequently, maintaining consistency across multiple tables could be a concern.
+
 Plan:
 
 I would recommend implementing automated ETL pipelines using AWS Glue or similar services to ensure that new data is processed and integrated into the existing datasets without manual intervention. The use of data versioning and schema evolution capabilities in Parquet files will also help maintain compatibility as the schema evolves over time.
