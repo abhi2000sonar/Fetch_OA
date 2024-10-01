@@ -21,14 +21,14 @@ relational_model_diagram.png: A visual representation of the relational data mod
 SQL Queries:
 
 business_queries.sql: SQL queries that answer specific business questions derived from the structured relational data model.
-Results:
+
 create_commands_ddl.sql: SQL query for creating tables in database, 
 
 Communication:
 
 slack_message.md: A sample Slack message to a business stakeholder, summarizing the key findings from the analysis and recommendations for improving data quality and model efficiency.
-S
-teps Undertaken
+
+Steps Undertaken
 
 1. Review of Unstructured Data and Relational Model Design
 The provided JSON data files (brands.json, users.json, receipts.json) were reviewed and transformed into a structured relational data model, following best practices for database design.
