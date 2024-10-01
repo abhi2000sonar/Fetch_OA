@@ -124,6 +124,7 @@ Memory Usage:
 
 The brands_df DataFrame is relatively large, with fields such as barcode, name, and _id.$oid taking up considerable memory space. The total memory usage across the columns suggests that this dataset could grow significantly if new records are added frequently.
 The users_df DataFrame is smaller but contains important fields like role and _id.$oid, which also consume memory. If user data grows, this could also become a concern.
+
 Plan:
 
 To handle potential memory issues, I’ve started storing the data in Parquet format with compression (gzip). Parquet is an efficient columnar storage format that can handle large datasets more effectively, reducing both disk storage and memory consumption. This helps with faster read/write operations, especially when dealing with large data volumes.
