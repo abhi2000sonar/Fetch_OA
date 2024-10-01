@@ -1,4 +1,5 @@
 1. What questions do you have about the data?
+
 After examining the structure and content of the brands_df and users_df, several important questions have arisen:
 
 Missing Data:
@@ -27,6 +28,7 @@ What are the business rules governing brandCode and barcode? Should every brand 
 Should all users have a state and signUpSource? Are there specific user profiles where this information might not be captured?
 
 2. How did you discover the data quality issues?
+
 From the analysis of the brands_df and users_df data, I discovered the following:
 
 Missing Values:
@@ -41,6 +43,7 @@ Inconsistent Values in active Field:
 Upon reviewing the active field in the users_df, I found that nearly all users (494 out of 495) are marked as True (active), while only one user is marked as False. This might indicate a potential imbalance in the dataset, as we would expect a larger proportion of inactive users, depending on the nature of the user base. It raises the question: Is this single inactive user accurate, or is there an issue with how the active status is recorded? This could either be an issue with the user lifecycle or simply reflect the data we have.
 
 3. What do you need to know to resolve the data quality issues?
+
 Handling Missing Values:
 From the output, I can see that there are no missing values in critical fields like barcode in the brands_df, which means we do not need to drop any rows based on this field.
 However, fields like categoryCode and topBrand have missing values. I need to know if these missing values are acceptable or if we should try to fill them in. For instance:
@@ -60,6 +63,7 @@ How should we handle missing values in non-critical fields like signUpSource and
 
 
 4. What other information would you need to help you optimize the data assets you're trying to create?
+
 Category Code Information:
 
 The categoryCode field in the brands_df has a range of different categories, such as 'BAKING', 'BEVERAGES', 'CANDY_AND_SWEETS', etc. However, there are also missing values (nan). To optimize the data, I need to know the following:
@@ -88,6 +92,7 @@ Data Volume and Frequency:
 How frequently does new data get added to these datasets? Knowing this will help me plan how often to refresh the dataset and ensure that optimizations (e.g., handling new users or brands) are done in real-time or at regular intervals.
 
 5. What performance and scaling concerns do you anticipate in production and how do you plan to address them?
+
 Memory Usage:
 
 The brands_df DataFrame is relatively large, with fields such as barcode, name, and _id.$oid taking up considerable memory space. The total memory usage across the columns suggests that this dataset could grow significantly if new records are added frequently.
