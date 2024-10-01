@@ -15,6 +15,7 @@ receipts.json: Includes receipts data such as bonusPointsEarned, totalSpent, and
 Code:
 
 eda_fetch.ipynb: Jupyter notebook used for data exploration, analysis, and data quality assessments. This notebook includes the transformation of JSON data into structured tables.
+
 relational_model_diagram.png: A visual representation of the relational data model created based on the unstructured data from the JSON files.
 
 SQL Queries:
