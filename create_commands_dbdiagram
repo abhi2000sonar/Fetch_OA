@@ -1,0 +1,55 @@
+Table brands {
+  id_oid NVARCHAR(24) [primary key] // Primary key (unique identifier for each brand)
+  barcode NVARCHAR(50) [not null]   // Barcode of the item
+  brandCode NVARCHAR(50)            // Brand code
+  category NVARCHAR(50)             // Category of the product
+  categoryCode NVARCHAR(50)         // Category code of the product
+  name NVARCHAR(255) [not null]     // Name of the brand
+  topBrand BOOLEAN                  // Boolean flag indicating if it’s a top brand
+}
+
+Table users {
+  id_oid NVARCHAR(24) [primary key] // Primary key (unique identifier for each user)
+  active BOOLEAN [not null]         // Boolean indicating whether the user is active
+  createdDate BIGINT [not null]     // Date when the user created the account (Unix timestamp)
+  lastLogin BIGINT                  // Last login date (Unix timestamp)
+  role NVARCHAR(20) [not null]      // Role of the user (e.g., 'consumer')
+  signUpSource NVARCHAR(50)         // Source from which the user signed up
+  state NVARCHAR(2)                 // State abbreviation (e.g., WI)
+}
+
+Table receipts {
+  id_oid NVARCHAR(24) [primary key]       // Primary key (unique identifier for each receipt)
+  bonusPointsEarned INT [not null]        // Number of bonus points earned
+  bonusPointsEarnedReason NVARCHAR(255)   // Reason for bonus points
+  createDate BIGINT [not null]            // Date when the receipt was created (Unix timestamp)
+  dateScanned BIGINT                      // Date when the receipt was scanned (Unix timestamp)
+  finishedDate BIGINT                     // Date when the receipt finished processing
+  modifyDate BIGINT                       // Date when the receipt was modified
+  pointsAwardedDate BIGINT                // Date when points were awarded
+  pointsEarned NUMERIC(10, 2)             // Number of points earned
+  purchaseDate BIGINT                     // Date of the purchase
+  purchasedItemCount INT [not null]       // Number of items purchased on the receipt
+  rewardsReceiptStatus NVARCHAR(50)       // Status of the receipt
+  totalSpent NUMERIC(10, 2) [not null]    // Total amount spent on the receipt
+  userId NVARCHAR(24) [not null]          // Foreign key referencing users.id_oid
+}
+
+Table rewardsReceiptItemList {
+  receipt_id NVARCHAR(24) [not null]      // Foreign key referencing receipts.id_oid
+  barcode NVARCHAR(50)                    // Foreign key referencing brands.barcode
+  description NVARCHAR(255)               // Description of the purchased item
+  finalPrice NUMERIC(10, 2)               // Final price of the item
+  itemPrice NUMERIC(10, 2)                // Original price of the item
+  needsFetchReview BOOLEAN                // Boolean indicating if the item needs a fetch review
+  partnerItemId NVARCHAR(50)              // Partner item ID
+  quantityPurchased INT                   // Quantity of the item purchased
+  userFlaggedBarcode NVARCHAR(50)         // User-flagged barcode
+  userFlaggedNewItem BOOLEAN              // Boolean indicating if the item is user-flagged as new
+  userFlaggedPrice NUMERIC(10, 2)         // User-flagged price of the item
+  userFlaggedQuantity INT                 // User-flagged quantity of the item
+}
+
+Ref: receipts.userId > users.id_oid // Many-to-one relationship between receipts and users
+Ref: rewardsReceiptItemList.receipt_id > receipts.id_oid // Many-to-one relationship between rewardsReceiptItemList and receipts
+Ref: rewardsReceiptItemList.barcode > brands.barcode // Many-to-one relationship between rewardsReceiptItemList and brands
