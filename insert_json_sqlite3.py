@@ -7,11 +7,11 @@ def load_json_data(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
 
-# Connect to SQLite (or any other SQL database)
-conn = sqlite3.connect('fetch_rewards.db')  # You can use other databases like PostgreSQL or MySQL
+# Connect to SQLite 
+conn = sqlite3.connect('fetch_rewards.db')  
 cursor = conn.cursor()
 
-# Create tables (only needed if tables are not already created)
+# Create tables 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS brands (
     id_oid NVARCHAR(24) PRIMARY KEY,
