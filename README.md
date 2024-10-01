@@ -34,6 +34,7 @@ The following queries are included in business_queries.sql:
 
 Top 5 brands by receipts scanned for the most recent month: This query identifies the top 5 brands based on the number of receipts scanned in the most recent month.
 Comparison of top 5 brands by receipts scanned for recent month vs. previous month: This query compares the rankings for the top 5 brands between the most recent month and the previous month.
+
 Additional queries include:
 
 Which brand has the most spend among users created within the past 6 months.
@@ -54,10 +55,12 @@ Python 3.x
 Jupyter Notebook
 Pandas library for data manipulation
 SQL engine (for testing the SQL queries)
+
 Running the Jupyter Notebook:
 
 Load the data_analysis.ipynb notebook to view the data exploration, data quality assessments, and transformations.
 Ensure you have the required libraries installed (pandas, matplotlib).
+
 Running the SQL Queries:
 
 The SQL queries can be executed in any SQL engine (e.g., PostgreSQL, MySQL, SQLite).
